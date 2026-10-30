@@ -40,7 +40,7 @@ def prever(artefato: dict, dados: dict) -> dict:
     probabilidade = float(pipeline.predict_proba(entrada)[0, 1])
     return {
         "aprovado": probabilidade >= 0.5,
-        "probabilidade_aprovacao": round(probabilidade, 4),
+        "probabilidade_aprovacao": round(probabilidade, 2),
         "modelo": artefato["nome"],
         "versao": artefato["versao"],
     }

@@ -16,4 +16,4 @@
 - Ative o ambiente criado:
 ```source [nome_do_seu_ambiente]/bin/activate```
 - Instale os requirements:
-```pip install -r requirements.txt```
+```pip install -r requirements.txt``` (Cada pasta contém o seu arquivo requirements.txt)

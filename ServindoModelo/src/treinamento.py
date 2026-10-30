@@ -14,6 +14,7 @@ import pandas as pd
 import sklearn
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 from sklearn.model_selection import cross_val_score, train_test_split
@@ -22,7 +23,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 RAIZ_PROJETO = Path(__file__).resolve().parents[1]
 CAMINHO_DADOS = RAIZ_PROJETO / "data" / "credito.csv"
-CAMINHO_MODELO = RAIZ_PROJETO / "modelos" / "modelo_credito.pkl"
+CAMINHO_MODELO = RAIZ_PROJETO / "modelos" / "modelo_credito.pkl" # .pickle
 VERSAO = "1.0.0"
 SEED = 42
 
@@ -57,7 +58,7 @@ def escolher_modelo(X_treino, y_treino) -> tuple[str, Pipeline]:
     """Compara os candidatos com validação cruzada e devolve o melhor."""
     candidatos = {
         "regressao_logistica": LogisticRegression(max_iter=1000),
-        "random_forest": RandomForestClassifier(n_estimators=200, random_state=SEED),
+        "knn": KNeighborsClassifier(n_neighbors=3)
     }
     resultados = {}
     for nome, estimador in candidatos.items():
